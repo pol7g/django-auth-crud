@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <form method="POST" class="card card-body"> <!--(action="/signup/") action es para que envie el formulario a la ruta /signup/, metodo POST (importante!!!)
+                si no pongo action=... el formulario va a mandar los datos a la misma ruta donde fue servido (def signup) 
+                si quiero enviar el form a otra ruta le pongo action=... nombre del metodo en mayúsculas POST !!!-->
+                <h1 class="text-center">Signup (seria registrarse)</h1>
+                {{mytitle}}
+                <!--clave del dicci del parametro que paso desp del nomb de la plantilla en la vista (def) me muestra el valor-->
+                <br><br> <!-- <br> - Defines a single line break-->
+                <p style="color: brown;">{{error}}</p>
+                {% csrf_token %}
+                <!--Token de jinja para formulario (cuando envia) para indicar q el formulario fue generado por el propio servidor-->
+                <!-- {{form}} .as_p es para que acomode las lineas del formulario-->
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="write your username">
+                </div>
+                <div class="mb-3">
+                    <label for="password1">Password:</label>
+                    <input type="password" name="password1" id="password1" class="form-control" placeholder="write your password">
+                </div>
+                <div class="mb-3">
+                    <label for="password2">Confirm your password:</label>
+                    <input type="password" name="password2" id="password2" class="form-control" placeholder="confirm your password">
+                </div>
+                <button class="btn btn-primary">
+                    Signup
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

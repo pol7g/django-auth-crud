@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <h1 class="text-secondary">Task detail</h1>
+            {{task.title}} <br>
+            {{error}}
+            <form method="POST">
+                {% csrf_token %} <!--todos los formularios necesitan csrf_token-->
+                {{form.as_p}} <!-- as_p - coloca las ventanas del formulario uno debajo del otro-->
+                <button class="btn btn-primary">
+                    Update
+                </button>
+            </form>
+            <div class="mt-5 d-flex">
+                
+                
+                <form action="{% url 'complete_task' task.id %}" method="POST">
+                    {% csrf_token %}
+                    <!--Observe que en este caso no puse {{form.as_p}}-->
+                    <button class="btn btn-secondary">
+                        Complete
+                    </button>
+                </form>
+                
+                <form action="{% url 'delete_task' task.id %}" method="POST">
+                    {% csrf_token %}
+                    <!--Observe que en este caso no puse {{form.as_p}}-->
+                    <button class="btn btn-danger">
+                        Delete
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+{% endblock %}

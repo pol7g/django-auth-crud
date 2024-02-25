@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>Es nombre de la func def , no puedo poner def login por que hay una func que importo desde django "from django.contrib.auth import login, logout" y va a generar errores</p>
+
+<main class="container">
+    <div class="row">
+        <section class="col-md-4 offset-md-4 mt-5">
+            <form action="/signin/" method="POST" class="card card-body"> <!--si no pongo /signin/ me va a enviar a la misma pagina
+                method POST es para que los datos no aparezcan en la url-->
+                    {{error}}
+                    {% csrf_token %}
+                    
+                    <h1 class="text-center">Signin (seria login)</h1>
+                                {{mytitle}}
+                                <!--clave del dicci del parametro que paso desp del nomb de la plantilla en la vista (def) me muestra el valor-->
+                                <br><br> <!-- <br> - Defines a single line break-->
+                                <p style="color: brown;">{{error}}</p>
+                                {% csrf_token %}
+                                <!--Token de jinja para formulario (cuando envia) para indicar q el formulario fue generado por el propio servidor-->
+                                <!-- {{form}} .as_p es para que acomode las lineas del formulario-->
+                                <div class="mb-3">
+                                    <label for="username">Username:</label>
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="write your username">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password">Password:</label>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="write your password">
+                                </div>
+                    <button class="btn btn-primary">Signin</button>
+                </form>
+        </section>
+    </div>
+</main>
+{% endblock %}
